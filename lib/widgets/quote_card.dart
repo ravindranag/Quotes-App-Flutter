@@ -14,7 +14,7 @@ class QuoteCard extends StatefulWidget {
 class _QuoteCardState extends State<QuoteCard> {
   @override
   Widget build(BuildContext context) => Card(
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
+      margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 8),
         child: Column(
@@ -26,14 +26,14 @@ class _QuoteCardState extends State<QuoteCard> {
                   fontWeight: FontWeight.bold
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Align(
               alignment: Alignment.bottomRight,
               child: Text(
                   '- '+widget.quote.author
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Divider(
               height: 20,
               thickness: 2,
@@ -42,30 +42,31 @@ class _QuoteCardState extends State<QuoteCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          widget.quote.toggleIsLiked();
-                        });
-                      },
-                      splashColor: Colors.redAccent[200],
-                      icon: widget.quote.isLiked ? const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      ) : const Icon(
-                        Icons.favorite_border,
-                        color: Colors.red,
-                      )
-                  ),
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        widget.quote.toggleIsLiked();
+                      });
+                    },
+                    splashRadius: 30,
+                    splashColor: Colors.redAccent[200],
+                    focusColor: Colors.redAccent[100],
+                    hoverColor: Colors.redAccent[50],
+                    highlightColor: Colors.redAccent[100],
+                    icon: widget.quote.isLiked ? const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                    ) : const Icon(
+                      Icons.favorite_border,
+                      color: Colors.red,
+                    )
                 ),
-                Container(
-                  child: IconButton(
-                      onPressed: () {
-                        widget.delete();
-                      },
-                      icon: Icon(Icons.delete)
-                  ),
+                IconButton(
+                    onPressed: () {
+                      widget.delete();
+                    },
+                    splashRadius: 30,
+                    icon: const Icon(Icons.delete)
                 )
               ],
             )

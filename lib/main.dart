@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme
         )
       ),
-      home: Home(),
+      home: const Home(),
     );
   }
 }
@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
             'Quotes For You',
           style: TextStyle(
             color: Colors.black
@@ -56,16 +56,23 @@ class _HomeState extends State<Home> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
+        child: quotes.isEmpty ? Center(
+          child: Text(
+              'You deleted all the quotes :( Restart App',
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              fontWeight: FontWeight.bold
+            ),
+          ),
+        ) : Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: quotes.map((q) => (
               QuoteCard(
-                quote: q,
-                delete: () {
+                  quote: q,
+                  delete: () {
                     setState(() {
                       quotes.remove(q);
                     });
-                }
+                  }
               )
           )).toList(),
         ),
